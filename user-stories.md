@@ -7,3 +7,5 @@ Jako pořadetel při založení nového turnaje napíšu název, disciplínu a p
 LOSOVÁNÍ: 
 
 dvojice v kole určuje program systémem každý s každým - nikdo nehraje dvakrát s týmž soupeřem a nikdo nehraje dvakrát v jednom kole. Při lichém počtu hráčů dostane volný los ten, kdo ho ještě neměl; nikdo ho nedostane podruhé, dokud ho nedostali všichni ostatní.
+
+Dvojice 
