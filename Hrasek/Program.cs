@@ -1,3 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using Hrasek;
 
-Console.WriteLine("Hello, World!");
+PlayerManager playerManager = new PlayerManager();
+TournamentManager tournamentManager = new TournamentManager(playerManager);

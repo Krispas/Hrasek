@@ -6,7 +6,7 @@
     {
         foreach (Player p in players)
         {
-            if (p.Nickname.ToLower() == nickname.ToLower())
+            if (p.nickname.ToLower() == nickname.ToLower())
             {
                 throw new Exception("Nickname already taken");
             }
@@ -18,11 +18,11 @@
     {
         foreach (Player p in players)
         {
-            if (p.Nickname.ToLower() == nickname.ToLower() && p.TournamentsPlayed != 0)
+            if (p.nickname.ToLower() == nickname.ToLower() && p.tournamentsPlayed != 0)
             {
                 throw new Exception("Player has played tournaments");
             }
-            if (p.Nickname.ToLower() == nickname.ToLower())
+            if (p.nickname.ToLower() == nickname.ToLower())
             {
                 players.Remove(p);
             }
@@ -33,8 +33,18 @@
         List<string> nicknames = new List<string>();
         foreach (Player p in players)
         {
-            nicknames.Add(p.Nickname);
+            nicknames.Add(p.nickname);
+        }
+        if (nicknames.Count == 0)
+        {
+            throw new Exception("No players found");
         }
         return nicknames;
+    }
+
+    public Player? getPlayer(string nickname)
+    {
+        Player? player = players.Find(p => p.nickname == nickname);
+        return player;
     }
 }

@@ -1,6 +1,6 @@
 ﻿public class Player(string name, string nickname)
 {
     public string Name { get; set; } = name;
-    public string Nickname { get; set; } = nickname;
-    public int TournamentsPlayed = 0;
+    public string nickname { get; set; } = nickname;
+    public int tournamentsPlayed = 0;
 }
