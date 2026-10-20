@@ -2,4 +2,5 @@
 {
     public string Name { get; set; } = name;
     public string Nickname { get; set; } = nickname;
+    public int TournamentsPlayed = 0;
 }
