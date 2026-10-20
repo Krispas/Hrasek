@@ -25,4 +25,8 @@ public class TournamentManager(PlayerManager playerManager)
         }
         activeTournament.tournamentPlayers.Add(player);
     }
+
+    public void startTournament()
+    {
+    }
 }
