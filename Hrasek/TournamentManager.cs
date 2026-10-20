@@ -6,6 +6,7 @@ public class TournamentManager(PlayerManager playerManager)
     
     public void newTournament(string name, string discipline, int numberOfRounds)
     {
+        bool tournamentStarted = false;
         if (activeTournament != null)
         {
             throw new Exception("Tournament already exists");
@@ -28,5 +29,12 @@ public class TournamentManager(PlayerManager playerManager)
 
     public void startTournament()
     {
+        if (activeTournament == null)
+        {
+            throw new Exception("No tournament exists");
+        }
+        bool tournamentStarted = true;
+        //Pridat vsem played tournamet
+        //zapnout losovani
     }
 }
