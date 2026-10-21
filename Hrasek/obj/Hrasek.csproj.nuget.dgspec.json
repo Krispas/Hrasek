@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\holes\\Documents\\GitHub\\HrasekW\\Hrasek\\Hrasek.csproj": {}
+    "C:\\Code\\C ostry\\Hrasek\\Hrasek\\Hrasek.csproj": {}
   },
   "projects": {
-    "C:\\Users\\holes\\Documents\\GitHub\\HrasekW\\Hrasek\\Hrasek.csproj": {
+    "C:\\Code\\C ostry\\Hrasek\\Hrasek\\Hrasek.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\holes\\Documents\\GitHub\\HrasekW\\Hrasek\\Hrasek.csproj",
+        "projectUniqueName": "C:\\Code\\C ostry\\Hrasek\\Hrasek\\Hrasek.csproj",
         "projectName": "Hrasek",
-        "projectPath": "C:\\Users\\holes\\Documents\\GitHub\\HrasekW\\Hrasek\\Hrasek.csproj",
+        "projectPath": "C:\\Code\\C ostry\\Hrasek\\Hrasek\\Hrasek.csproj",
         "packagesPath": "C:\\Users\\holes\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\holes\\Documents\\GitHub\\HrasekW\\Hrasek\\obj\\",
+        "outputPath": "C:\\Code\\C ostry\\Hrasek\\Hrasek\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\holes\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\holes\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -65,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\holes\\.dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

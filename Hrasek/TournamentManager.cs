@@ -33,8 +33,31 @@ public class TournamentManager(PlayerManager playerManager)
         {
             throw new Exception("No tournament exists");
         }
-        bool tournamentStarted = true;
+        activeTournament.tournamentStarted = true;
         //Pridat vsem played tournamet
         //zapnout losovani
+    }
+    public void addMatch()
+    {
+        if (activeTournament == null)
+        {
+            throw new Exception("No tournament exists");
+        }
+
+        if (!activeTournament.tournamentStarted)
+        {
+            throw new Exception("Tournament not started");
+        }
+    }
+    public void getMatches()
+    {
+        if (activeTournament == null)
+        {
+            throw new Exception("No tournament exists");
+        }
+        if (!activeTournament.tournamentStarted)
+        {
+            throw new Exception("Tournament not started");
+        }
     }
 }
