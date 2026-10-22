@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Hrasek")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b73d3e865474629a9206b92a81d1904b915164e3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+efd7a6829410468f39f9cfc6e92459c6f8adf80c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Hrasek")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Hrasek")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

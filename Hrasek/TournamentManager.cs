@@ -1,4 +1,6 @@
-﻿namespace Hrasek;
+﻿using System.Data;
+
+namespace Hrasek;
 
 public class TournamentManager(PlayerManager playerManager)
 { 
@@ -18,11 +20,11 @@ public class TournamentManager(PlayerManager playerManager)
         Player player = playerManager.getPlayer(nickname);
         if (player == null)
         {
-            throw new Exception("Player not found");
+            throw new NoNullAllowedException("Player not found");
         }
         if (activeTournament == null)
         {
-            throw new Exception("No tournament exists");
+            throw new NoNullAllowedException("No tournament exists");
         }
         activeTournament.tournamentPlayers.Add(player);
     }
@@ -31,7 +33,7 @@ public class TournamentManager(PlayerManager playerManager)
     {
         if (activeTournament == null)
         {
-            throw new Exception("No tournament exists");
+            throw new NoNullAllowedException("No tournament exists");
         }
         activeTournament.tournamentStarted = true;
         //Pridat vsem played tournamet
@@ -41,7 +43,7 @@ public class TournamentManager(PlayerManager playerManager)
     {
         if (activeTournament == null)
         {
-            throw new Exception("No tournament exists");
+            throw new NoNullAllowedException("No tournament exists");
         }
 
         if (!activeTournament.tournamentStarted)
@@ -53,7 +55,7 @@ public class TournamentManager(PlayerManager playerManager)
     {
         if (activeTournament == null)
         {
-            throw new Exception("No tournament exists");
+            throw new NoNullAllowedException("No tournament exists");
         }
         if (!activeTournament.tournamentStarted)
         {
