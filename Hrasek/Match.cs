@@ -1,5 +1,6 @@
 ﻿/// <summary>
-/// Match class for storing information about a match. It holds 2 players thier final score, and who in this round and the round number.
+/// Match class for storng information about a match. It holds 2 players thier final score, and who in this round and the round number.
+/// losing will use this class, to save info about the matches.
 /// </summary>
 /// <param name="p1">Player 1</param>
 /// <param name="p2">Player 2</param>
