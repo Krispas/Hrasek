@@ -11,7 +11,7 @@ public class TournamentManager(PlayerManager playerManager)
         bool tournamentStarted = false;
         if (activeTournament != null)
         {
-            throw new Exception("Tournament already exists");
+            throw new TournamentAlreadyExistsExeption();
         }
         activeTournament = new Tournament(name, discipline, numberOfRounds);
     }
@@ -20,11 +20,11 @@ public class TournamentManager(PlayerManager playerManager)
         Player player = playerManager.getPlayer(nickname);
         if (player == null)
         {
-            throw new NoNullAllowedException("Player not found");
+            throw new PlayerNotFoundExeption(nickname);
         }
         if (activeTournament == null)
         {
-            throw new NoNullAllowedException("No tournament exists");
+            throw new TournamentNotExistingExeption();
         }
         activeTournament.tournamentPlayers.Add(player);
     }
@@ -33,7 +33,7 @@ public class TournamentManager(PlayerManager playerManager)
     {
         if (activeTournament == null)
         {
-            throw new NoNullAllowedException("No tournament exists");
+            throw new TournamentNotExistingExeption();
         }
         activeTournament.tournamentStarted = true;
         //Pridat vsem played tournamet
@@ -43,7 +43,7 @@ public class TournamentManager(PlayerManager playerManager)
     {
         if (activeTournament == null)
         {
-            throw new NoNullAllowedException("No tournament exists");
+            throw new TournamentNotExistingExeption();
         }
 
         if (!activeTournament.tournamentStarted)
@@ -55,7 +55,7 @@ public class TournamentManager(PlayerManager playerManager)
     {
         if (activeTournament == null)
         {
-            throw new NoNullAllowedException("No tournament exists");
+            throw new TournamentNotExistingExeption();
         }
         if (!activeTournament.tournamentStarted)
         {

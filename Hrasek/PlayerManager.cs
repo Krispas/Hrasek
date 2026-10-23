@@ -8,7 +8,7 @@
         {
             if (p.nickname.ToLower() == nickname.ToLower())
             {
-                throw new Exception("Nickname already taken");
+                throw new PlayerNickanemeAreadyTakenExeption(nickname);
             }
         }
 
@@ -20,7 +20,7 @@
         {
             if (p.nickname.ToLower() == nickname.ToLower() && p.tournamentsPlayed != 0)
             {
-                throw new Exception("Player has played tournaments");
+                throw new PlayerPlayerTournamentExeption(nickname);
             }
             if (p.nickname.ToLower() == nickname.ToLower())
             {
@@ -37,7 +37,7 @@
         }
         if (nicknames.Count == 0)
         {
-            throw new Exception("No players found");
+            throw new PlayersNotFoundExeption();
         }
         return nicknames;
     }
