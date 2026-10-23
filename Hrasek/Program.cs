@@ -3,5 +3,19 @@
 PlayerManager playerManager = new PlayerManager();
 TournamentManager tournamentManager = new TournamentManager(playerManager);
 
-try {tournamentManager.addMatch();}
-catch (Exception) {Console.WriteLine("Message");}
+try
+{
+    tournamentManager.addPlayer("test");
+}
+catch (PlayerExeptions e)
+{
+    Console.WriteLine(e.Message);
+}
+catch (TournamentExeptions e)
+{
+    Console.WriteLine(e.Message);
+}
+catch (Exception)
+{
+    Console.WriteLine("Neočekávaná chyba");
+}

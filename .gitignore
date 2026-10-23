@@ -8,3 +8,5 @@ Hrasek/obj/rider.project.model.nuget.info
 Hrasek/obj/rider.project.restore.info
 *.info
 *.info
+/.idea
+/Hrasek/obj
