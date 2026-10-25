@@ -26,6 +26,11 @@ public class TournamentManager(PlayerManager playerManager)
         {
             throw new TournamentNotExistingExeption();
         }
+
+        if (activeTournament.tournamentPlayers.Contains(player))
+        {
+            throw new PlayerAlreadyInTournamentExeption(nickname);
+        }
         activeTournament.tournamentPlayers.Add(player);
     }
 
@@ -48,7 +53,7 @@ public class TournamentManager(PlayerManager playerManager)
 
         if (!activeTournament.tournamentStarted)
         {
-            throw new Exception("Tournament not started");
+            throw new TournamentNotStartedExeption();
         }
     }
     public void getMatches()
@@ -59,7 +64,7 @@ public class TournamentManager(PlayerManager playerManager)
         }
         if (!activeTournament.tournamentStarted)
         {
-            throw new Exception("Tournament not started");
+            throw new TournamentNotStartedExeption();
         }
     }
 }

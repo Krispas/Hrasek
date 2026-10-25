@@ -8,3 +8,4 @@ public class TournamentExeptions(string mesage) : Exception(mesage);
 
 public class TournamentAlreadyExistsExeption() : TournamentExeptions("Pouze 1 turnaj múže být aktivní");
 public class TournamentNotExistingExeption() : TournamentExeptions("Musíte první vytvořit turnaj");
+public class TournamentNotStartedExeption() : TournamentExeptions("Turnaj ještě nebyl zapnut");
