@@ -9,6 +9,6 @@ TURNAJ:
 6. Jako pořadetel chci aby nový turnaj šel založit pouze pokud není otevřený nějáký jiný.  
 
 LOSOVÁNÍ:  
-7. Jako pořadatel chci automaticky vylosovat dvojice hráčů pro jednotlivá kola.
-8. Jako pořadetel chci aby každy hráč hrál s každým soupeřem maximalně jednou v jednom turnaji.
-9. Jako pořadatel chci aby systém při lichém počtu hráčů spravedlivě přiděloval volný los, aby jo nikdo nedostal podruhé dříve než ostatní
+7. Jako pořadatel chci automaticky vylosovat dvojice hráčů pro jednotlivá kola.  
+8. Jako pořadetel chci aby každy hráč hrál s každým soupeřem maximalně jednou v jednom turnaji.  
+9. Jako pořadatel chci aby systém při lichém počtu hráčů spravedlivě přiděloval volný los, aby jo nikdo nedostal podruhé dříve než ostatní.  
