@@ -8,12 +8,12 @@ public class TournamentManager(PlayerManager playerManager)
     
     public void newTournament(string name, string discipline, int numberOfRounds)
     {
-        bool tournamentStarted = false;
         if (activeTournament != null)
         {
             throw new TournamentAlreadyExistsExeption();
         }
         activeTournament = new Tournament(name, discipline, numberOfRounds);
+        activeTournament.tournamentStarted = false;
     }
     public void addPlayer(string nickname)
     {
@@ -41,10 +41,14 @@ public class TournamentManager(PlayerManager playerManager)
             throw new TournamentNotExistingExeption();
         }
         activeTournament.tournamentStarted = true;
-        //Pridat vsem played tournamet
+        foreach (Player p in activeTournament.tournamentPlayers)
+        {
+            p.tournamentsPlayed++;
+        }
         //zapnout losovani
     }
-    public void addMatch()
+
+    public void endTournament()
     {
         if (activeTournament == null)
         {
@@ -55,8 +59,23 @@ public class TournamentManager(PlayerManager playerManager)
         {
             throw new TournamentNotStartedExeption();
         }
+        
+        activeTournament = null;
     }
-    public void getMatches()
+    public void addMatch(Match match) // Pres tuto metodu se budou vytvaret zapasi v losovani
+    {
+        if (activeTournament == null)
+        {
+            throw new TournamentNotExistingExeption();
+        }
+
+        if (!activeTournament.tournamentStarted)
+        {
+            throw new TournamentNotStartedExeption();
+        }
+        activeTournament.matches.Add(match);
+    }
+    public List<Match> getMatches()  // Z teto metody se bude tvořit Tabulka, plus na ukladani se bude hodit
     {
         if (activeTournament == null)
         {
@@ -66,5 +85,6 @@ public class TournamentManager(PlayerManager playerManager)
         {
             throw new TournamentNotStartedExeption();
         }
+        return activeTournament.matches;
     }
 }
