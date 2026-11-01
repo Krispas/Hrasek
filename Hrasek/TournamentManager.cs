@@ -53,7 +53,7 @@ public class TournamentManager(PlayerManager playerManager)
         //zapnout losovani
     }
 
-    public void endTournament()
+    public void endNotFinishedTournament()
     {
         if (activeTournament == null)
         {
@@ -66,5 +66,82 @@ public class TournamentManager(PlayerManager playerManager)
         }
 
         activeTournament = null;
+    }
+    public List<Match> getCurentRoundMatches()
+    {
+        List<Match> curentRoundMatches = new List<Match>();
+        if (activeTournament == null)
+        {
+            throw new TournamentNotExistingExeption();
+        }
+        if (!activeTournament.tournamentStarted)
+        {
+            throw new TournamentNotStartedExeption();
+        }
+
+        foreach (Match m in activeTournament.matches)
+        {
+            if (activeTournament.currentRound == m.Round)
+            {
+                curentRoundMatches.Add(m);
+            }
+        }
+        return curentRoundMatches;
+    }
+    public bool isRoundFinished()
+    {
+        List<Match> curentRoundMatches = getCurentRoundMatches();
+        foreach (Match m in curentRoundMatches)
+        {
+            if (!m.matchFinished)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void endTournament()
+        {
+            if (activeTournament == null)
+            {
+                throw new TournamentNotExistingExeption();
+            }
+            if (!activeTournament.tournamentStarted)
+            {
+                throw new TournamentNotStartedExeption();
+            }
+
+            if (activeTournament.currentRound != activeTournament.numberOfRounds)
+            {
+                throw new TournamentNotFinishedExeption();
+            }
+            
+            activeTournament = null;
+    }
+    public void NewRound()
+    {
+        if (activeTournament == null)
+        {
+            throw new TournamentNotExistingExeption();
+        }
+        if (!activeTournament.tournamentStarted)
+        {
+            throw new TournamentNotStartedExeption();
+        }
+
+        if (activeTournament.currentRound == activeTournament.numberOfRounds)
+        {
+            throw new TournamentAllRoundsFinishedExeption();
+        }
+
+        if (isRoundFinished())
+        {
+            activeTournament.currentRound++;
+        }
+        else
+        {
+            throw new TournamentRoundNotFinished();
+        }
     }
 }

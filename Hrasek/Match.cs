@@ -7,10 +7,11 @@
 /// <param name="round">The number of  the round</param>
 public class Match(Player p1, Player p2, int round)
 {
-    public Player Player1 { get; set; } = p1;
-    public Player Player2 { get; set; } = p2;
+    public Player? Player1 { get; set; } = p1;
+    public Player? Player2 { get; set; } = p2;
     public int Round { get; set; } = round;
     public int scoreP1 = 0;
     public int scoreP2 = 0;
-    public Player winner = null;
+    public Player? winner = null;
+    public bool matchFinished = false;
 }

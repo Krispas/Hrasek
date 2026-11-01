@@ -1,7 +1,8 @@
 ﻿using Hrasek;
 //Jen for testing purposes.
 PlayerManager playerManager = new PlayerManager();
-TournamentManager tournamentManager = new TournamentManager(playerManager);
+MatchManager matchManager = new MatchManager(null, playerManager);
+TournamentManager tournamentManager = new TournamentManager(playerManager, matchManager);
 
 try
 {

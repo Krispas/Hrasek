@@ -1,5 +1,5 @@
 ﻿namespace Hrasek;
-public class MatchManager(Tournament? activeTournament)
+public class MatchManager(Tournament activeTournament, PlayerManager playerManager)
 {
     public void addMatch(Match match) // Pres tuto metodu se budou vytvaret zapasi v losovani
     {
@@ -14,18 +14,54 @@ public class MatchManager(Tournament? activeTournament)
         }
         activeTournament.matches.Add(match);
     }
-
-    public List<Match> getCurentRoundMatches()
+    public void setMatchWinner(Match match, Player winner)
     {
-        List<Match> curentRoundMatches = new List<Match>();
-            if (activeTournament == null)
+        if (match.Player1 == winner)
+        {
+            match.scoreP1 = 3;
+            match.scoreP2 = 0;
+            match.matchFinished = true;
+            match.winner = match.Player1;
+            return;
+        }
+
+        if (match.Player2 == winner)
+        {
+            match.scoreP1 = 0;
+            match.scoreP2 = 3;
+            match.matchFinished = true;
+            match.winner = match.Player2;
+            return;
+        }
+
+        throw new PlayerNotInThisMatchExeption();
+    }
+    public void setMatchWinner(Match match, string nickname)
+        {
+            Player winner = playerManager.getPlayer(nickname);
+            if (match.Player1 == winner)
             {
-                throw new TournamentNotExistingExeption();
+                match.scoreP1 = 3;
+                match.scoreP2 = 0;
+                match.matchFinished = true;
+                match.winner = match.Player1;
+                return;
             }
-            if (!activeTournament.tournamentStarted)
+
+            if (match.Player2 == winner)
             {
-                throw new TournamentNotStartedExeption();
+                match.scoreP1 = 0;
+                match.scoreP2 = 3;
+                match.matchFinished = true;
+                match.winner = match.Player2;
+                return;
             }
+        }
+        public void setMatchDraw(Match match)
+    {
+        match.scoreP1 = 1;
+        match.scoreP2 = 1;
+        match.matchFinished = true;
     }
     public List<Match> getMatches()  // Z teto metody se bude tvořit Tabulka, plus na ukladani se bude hodit
     {

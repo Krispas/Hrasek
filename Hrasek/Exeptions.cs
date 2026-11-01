@@ -4,8 +4,12 @@ public class PlayerAlreadyInTournamentExeption(string nickname) : PlayerExeption
 public class PlayerNickanemeAreadyTakenExeption(string nickname) : PlayerExeptions($"{nickname} je již v použita");
 public class PlayerPlayerTournamentExeption(string nickname) : PlayerExeptions($"Hráč nelze smazat, již odehraj první turnaj");
 public class PlayersNotFoundExeption() : PlayerExeptions($"Žádní hráči nenalezeni");
+public class PlayerNotInThisMatchExeption() : PlayerExeptions("Hráč v tomto zapase neexsistuje");
 public class TournamentExeptions(string mesage) : Exception(mesage);
 
 public class TournamentAlreadyExistsExeption() : TournamentExeptions("Pouze 1 turnaj múže být aktivní");
 public class TournamentNotExistingExeption() : TournamentExeptions("Musíte první vytvořit turnaj");
 public class TournamentNotStartedExeption() : TournamentExeptions("Turnaj ještě nebyl zapnut");
+public class TournamentAllRoundsFinishedExeption() : TournamentExeptions("Turnaj již nemá další kola");
+public class TournamentNotFinishedExeption() : TournamentExeptions("Turnaj ještě nebyl dohrán");
+public class TournamentRoundNotFinished() : TournamentExeptions("Kolo nebylo dokončeno");
