@@ -4,7 +4,7 @@ namespace Hrasek;
 
 public class TournamentManager(PlayerManager playerManager)
 {
-    private Tournament? activeTournament = null;
+    public Tournament? activeTournament = null;
 
     public void newTournament(string name, string discipline) //ui
     {
