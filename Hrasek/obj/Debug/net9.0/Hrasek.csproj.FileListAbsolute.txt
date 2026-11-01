@@ -1,0 +1,15 @@
+C:\Code\C ostry\Hrasek\Hrasek\bin\Debug\net9.0\Hrasek.exe
+C:\Code\C ostry\Hrasek\Hrasek\bin\Debug\net9.0\Hrasek.deps.json
+C:\Code\C ostry\Hrasek\Hrasek\bin\Debug\net9.0\Hrasek.runtimeconfig.json
+C:\Code\C ostry\Hrasek\Hrasek\bin\Debug\net9.0\Hrasek.dll
+C:\Code\C ostry\Hrasek\Hrasek\bin\Debug\net9.0\Hrasek.pdb
+C:\Code\C ostry\Hrasek\Hrasek\obj\Debug\net9.0\Hrasek.GeneratedMSBuildEditorConfig.editorconfig
+C:\Code\C ostry\Hrasek\Hrasek\obj\Debug\net9.0\Hrasek.AssemblyInfoInputs.cache
+C:\Code\C ostry\Hrasek\Hrasek\obj\Debug\net9.0\Hrasek.AssemblyInfo.cs
+C:\Code\C ostry\Hrasek\Hrasek\obj\Debug\net9.0\Hrasek.csproj.CoreCompileInputs.cache
+C:\Code\C ostry\Hrasek\Hrasek\obj\Debug\net9.0\Hrasek.sourcelink.json
+C:\Code\C ostry\Hrasek\Hrasek\obj\Debug\net9.0\Hrasek.dll
+C:\Code\C ostry\Hrasek\Hrasek\obj\Debug\net9.0\refint\Hrasek.dll
+C:\Code\C ostry\Hrasek\Hrasek\obj\Debug\net9.0\Hrasek.pdb
+C:\Code\C ostry\Hrasek\Hrasek\obj\Debug\net9.0\Hrasek.genruntimeconfig.cache
+C:\Code\C ostry\Hrasek\Hrasek\obj\Debug\net9.0\ref\Hrasek.dll
