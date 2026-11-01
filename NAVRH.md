@@ -20,3 +20,20 @@
 - `TournamentAlreadyExistsExeption` – již existuje aktivní turnaj.
 - `TournamentNotExistingExeption` – turnaj ještě nebyl vytvořen.
 - `TournamentNotStartedExeption` – turnaj ještě nebyl spuštěn.
+
+## Matches
+
+### Třída Match
+- Uchovává informace a jednotlivých zápasech.
+- Používá se při losování a ukládání výsledků.
+
+**Uchovává:**
+- `Player1` (Player) – první hráč zápasu.
+- `Player2` (Player) – druhý hráč zápasu.
+- `Round` (int) – číslo kola.
+- `scoreP1` (int) – skóre prvního hráče.
+- `scoreP2` (int) – skóre druhého hráče.
+- `winner` (Player) – vítěz zápasu.
+
+
+
