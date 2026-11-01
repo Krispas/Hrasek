@@ -3,18 +3,20 @@
 namespace Hrasek;
 
 public class TournamentManager(PlayerManager playerManager)
-{ 
+{
     private Tournament? activeTournament = null;
-    
-    public void newTournament(string name, string discipline, int numberOfRounds)
+
+    public void newTournament(string name, string discipline)
     {
         if (activeTournament != null)
         {
             throw new TournamentAlreadyExistsExeption();
         }
-        activeTournament = new Tournament(name, discipline, numberOfRounds);
+
+        activeTournament = new Tournament(name, discipline);
         activeTournament.tournamentStarted = false;
     }
+
     public void addPlayer(string nickname)
     {
         Player player = playerManager.getPlayer(nickname);
@@ -22,6 +24,7 @@ public class TournamentManager(PlayerManager playerManager)
         {
             throw new PlayerNotFoundExeption(nickname);
         }
+
         if (activeTournament == null)
         {
             throw new TournamentNotExistingExeption();
@@ -31,6 +34,7 @@ public class TournamentManager(PlayerManager playerManager)
         {
             throw new PlayerAlreadyInTournamentExeption(nickname);
         }
+
         activeTournament.tournamentPlayers.Add(player);
     }
 
@@ -40,6 +44,7 @@ public class TournamentManager(PlayerManager playerManager)
         {
             throw new TournamentNotExistingExeption();
         }
+
         activeTournament.tournamentStarted = true;
         foreach (Player p in activeTournament.tournamentPlayers)
         {
@@ -59,32 +64,7 @@ public class TournamentManager(PlayerManager playerManager)
         {
             throw new TournamentNotStartedExeption();
         }
-        
-        activeTournament = null;
-    }
-    public void addMatch(Match match) // Pres tuto metodu se budou vytvaret zapasi v losovani
-    {
-        if (activeTournament == null)
-        {
-            throw new TournamentNotExistingExeption();
-        }
 
-        if (!activeTournament.tournamentStarted)
-        {
-            throw new TournamentNotStartedExeption();
-        }
-        activeTournament.matches.Add(match);
-    }
-    public List<Match> getMatches()  // Z teto metody se bude tvořit Tabulka, plus na ukladani se bude hodit
-    {
-        if (activeTournament == null)
-        {
-            throw new TournamentNotExistingExeption();
-        }
-        if (!activeTournament.tournamentStarted)
-        {
-            throw new TournamentNotStartedExeption();
-        }
-        return activeTournament.matches;
+        activeTournament = null;
     }
 }
