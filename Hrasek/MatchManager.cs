@@ -14,7 +14,7 @@ public class MatchManager(Tournament activeTournament, PlayerManager playerManag
         }
         activeTournament.matches.Add(match);
     }
-    public void setMatchWinner(Match match, Player winner)
+    public void setMatchWinner(Match match, Player winner) //ui
     {
         if (match.Player1 == winner)
         {
@@ -36,7 +36,7 @@ public class MatchManager(Tournament activeTournament, PlayerManager playerManag
 
         throw new PlayerNotInThisMatchExeption();
     }
-    public void setMatchWinner(Match match, string nickname)
+    public void setMatchWinner(Match match, string nickname) //ui
         {
             Player winner = playerManager.getPlayer(nickname);
             if (match.Player1 == winner)
@@ -57,7 +57,7 @@ public class MatchManager(Tournament activeTournament, PlayerManager playerManag
                 return;
             }
         }
-        public void setMatchDraw(Match match)
+        public void setMatchDraw(Match match) //ui
     {
         match.scoreP1 = 1;
         match.scoreP2 = 1;

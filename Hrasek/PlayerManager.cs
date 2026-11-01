@@ -2,7 +2,7 @@
 {
     private List<Player> players = new List<Player>();
 
-    public void newPlayer(string name, string nickname)
+    public void newPlayer(string name, string nickname) //ui
     {
         foreach (Player p in players)
         {
@@ -14,7 +14,7 @@
 
         players.Add(new Player(name, nickname));
     }
-    public void removePlayer(string nickname)
+    public void removePlayer(string nickname) //ui
     {
         foreach (Player p in players)
         {
@@ -28,7 +28,7 @@
             }
         }
     }
-    public List<string> getAllPlayerNicknames()
+    public List<string> getAllPlayerNicknames() //muzes pouzit v ui
     {
         List<string> nicknames = new List<string>();
         foreach (Player p in players)

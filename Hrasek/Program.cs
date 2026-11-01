@@ -6,7 +6,7 @@ TournamentManager tournamentManager = new TournamentManager(playerManager, match
 
 try
 {
-    tournamentManager.addPlayer("test");
+    tournamentManager.addPlayerToTournament("test");
 }
 catch (PlayerExeptions e)
 {

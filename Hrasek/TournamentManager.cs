@@ -6,7 +6,7 @@ public class TournamentManager(PlayerManager playerManager)
 {
     private Tournament? activeTournament = null;
 
-    public void newTournament(string name, string discipline)
+    public void newTournament(string name, string discipline) //ui
     {
         if (activeTournament != null)
         {
@@ -17,7 +17,7 @@ public class TournamentManager(PlayerManager playerManager)
         activeTournament.tournamentStarted = false;
     }
 
-    public void addPlayer(string nickname)
+    public void addPlayerToTournament(string nickname) //ui
     {
         Player player = playerManager.getPlayer(nickname);
         if (player == null)
@@ -38,7 +38,7 @@ public class TournamentManager(PlayerManager playerManager)
         activeTournament.tournamentPlayers.Add(player);
     }
 
-    public void startTournament()
+    public void startTournament() //ui
     {
         if (activeTournament == null)
         {
@@ -53,7 +53,7 @@ public class TournamentManager(PlayerManager playerManager)
         //zapnout losovani
     }
 
-    public void endNotFinishedTournament()
+    public void endNotFinishedTournament() //ui
     {
         if (activeTournament == null)
         {
@@ -67,7 +67,7 @@ public class TournamentManager(PlayerManager playerManager)
 
         activeTournament = null;
     }
-    public List<Match> getCurentRoundMatches()
+    public List<Match> getCurentRoundMatches() //ui
     {
         List<Match> curentRoundMatches = new List<Match>();
         if (activeTournament == null)
@@ -101,7 +101,7 @@ public class TournamentManager(PlayerManager playerManager)
         return true;
     }
 
-    public void endTournament()
+    public void endTournament() //ui
         {
             if (activeTournament == null)
             {
@@ -119,7 +119,7 @@ public class TournamentManager(PlayerManager playerManager)
             
             activeTournament = null;
     }
-    public void NewRound()
+    public void NewRound() //ui
     {
         if (activeTournament == null)
         {
