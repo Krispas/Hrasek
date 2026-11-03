@@ -9,6 +9,9 @@ Hrasek/obj/rider.project.restore.info
 *.info
 *.info
 /.idea
+/.artifacts/
+**/bin/
+**/obj/
 /Hrasek/obj
 /Hrasek/obj
 /Hrasek/obj

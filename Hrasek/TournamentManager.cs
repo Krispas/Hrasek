@@ -1,147 +1,151 @@
-﻿using System.Data;
-
 namespace Hrasek;
 
-public class TournamentManager(PlayerManager playerManager)
+public class TournamentManager
 {
+    private readonly PlayerManager playerManager;
     public Tournament? activeTournament = null;
 
-    public void newTournament(string name, string discipline) //ui
+    public TournamentManager(PlayerManager playerManager)
     {
-        if (activeTournament != null)
-        {
-            throw new TournamentAlreadyExistsExeption();
-        }
-
-        activeTournament = new Tournament(name, discipline);
-        activeTournament.tournamentStarted = false;
+        this.playerManager = playerManager;
     }
 
-    public void addPlayerToTournament(string nickname) //ui
+    public void newTournament(string name, string discipline)
     {
-        Player player = playerManager.getPlayer(nickname);
-        if (player == null)
-        {
-            throw new PlayerNotFoundExeption(nickname);
-        }
-
-        if (activeTournament == null)
-        {
-            throw new TournamentNotExistingExeption();
-        }
-
-        if (activeTournament.tournamentPlayers.Contains(player))
-        {
-            throw new PlayerAlreadyInTournamentExeption(nickname);
-        }
-
-        activeTournament.tournamentPlayers.Add(player);
+        if (activeTournament != null) throw new TournamentAlreadyExistsExeption();
+        if (!InputValidator.Text(name, "Název", out string error) ||
+            !InputValidator.Text(discipline, "Disciplína", out error))
+            throw new TournamentExeptions(error);
+        activeTournament = new Tournament(name.Trim(), discipline.Trim());
     }
 
-    public void startTournament() //ui
+    public void addPlayerToTournament(string nickname)
     {
-        if (activeTournament == null)
-        {
-            throw new TournamentNotExistingExeption();
-        }
-
-        activeTournament.tournamentStarted = true;
-        foreach (Player p in activeTournament.tournamentPlayers)
-        {
-            p.tournamentsPlayed++;
-        }
-        //zapnout losovani
+        Tournament t = requireTournament();
+        if (t.tournamentStarted) throw new TournamentExeptions("Do rozehraného turnaje již nelze přidávat hráče.");
+        Player? player = playerManager.getPlayer(nickname);
+        if (player == null) throw new PlayerNotFoundExeption(nickname);
+        if (t.tournamentPlayers.Contains(player)) throw new PlayerAlreadyInTournamentExeption(nickname);
+        t.tournamentPlayers.Add(player);
     }
 
-    public void endNotFinishedTournament() //ui
+    public void setNumberOfRounds(int rounds)
     {
-        if (activeTournament == null)
-        {
-            throw new TournamentNotExistingExeption();
-        }
-
-        if (!activeTournament.tournamentStarted)
-        {
-            throw new TournamentNotStartedExeption();
-        }
-
-        activeTournament = null;
+        Tournament t = requireTournament();
+        if (t.tournamentStarted) throw new TournamentExeptions("Po zahájení nelze měnit počet kol.");
+        if (rounds < 1 || rounds > 99) throw new TournamentExeptions("Počet kol musí být 1 až 99.");
+        t.numberOfRounds = rounds;
     }
-    public List<Match> getCurentRoundMatches() //ui
+
+    public void startTournament()
     {
-        List<Match> curentRoundMatches = new List<Match>();
-        if (activeTournament == null)
-        {
-            throw new TournamentNotExistingExeption();
-        }
-        if (!activeTournament.tournamentStarted)
-        {
-            throw new TournamentNotStartedExeption();
-        }
-
-        foreach (Match m in activeTournament.matches)
-        {
-            if (activeTournament.currentRound == m.Round)
-            {
-                curentRoundMatches.Add(m);
-            }
-        }
-        return curentRoundMatches;
+        Tournament t = requireTournament();
+        if (t.tournamentStarted) throw new TournamentExeptions("Turnaj již byl zahájen.");
+        if (t.tournamentPlayers.Count < 2) throw new TournamentExeptions("Přidej alespoň dva hráče.");
+        int max = t.tournamentPlayers.Count - 1 + t.tournamentPlayers.Count % 2;
+        if (t.numberOfRounds == null || t.numberOfRounds < 1 || t.numberOfRounds > max)
+            throw new TournamentExeptions($"Pro tento počet hráčů nastav 1 až {max} kol.");
+        t.tournamentStarted = true;
+        foreach (Player p in t.tournamentPlayers) p.tournamentsPlayed++;
+        createRound();
     }
+
+    public List<Match> getCurentRoundMatches()
+    {
+        Tournament t = requireStarted();
+        List<Match> matches = new List<Match>();
+        foreach (Match m in t.matches)
+            if (m.Round == t.currentRound) matches.Add(m);
+        return matches;
+    }
+
     public bool isRoundFinished()
     {
-        List<Match> curentRoundMatches = getCurentRoundMatches();
-        foreach (Match m in curentRoundMatches)
+        Tournament t = requireStarted();
+        List<Match> matches = getCurentRoundMatches();
+        if (matches.Count == 0) return false;
+        foreach (Player player in t.tournamentPlayers)
         {
-            if (!m.matchFinished)
+            int appearances = 0;
+            foreach (Match m in matches)
             {
-                return false;
+                if (!m.matchFinished) return false;
+                if (m.Player1 == player || m.Player2 == player) appearances++;
             }
+            if (appearances != 1) return false;
         }
         return true;
     }
 
-    public void endTournament() //ui
-        {
-            if (activeTournament == null)
-            {
-                throw new TournamentNotExistingExeption();
-            }
-            if (!activeTournament.tournamentStarted)
-            {
-                throw new TournamentNotStartedExeption();
-            }
-
-            if (activeTournament.currentRound != activeTournament.numberOfRounds)
-            {
-                throw new TournamentNotFinishedExeption();
-            }
-            
-            activeTournament = null;
-    }
-    public void NewRound() //ui
+    public void closeRound()
     {
-        if (activeTournament == null)
-        {
-            throw new TournamentNotExistingExeption();
-        }
-        if (!activeTournament.tournamentStarted)
-        {
-            throw new TournamentNotStartedExeption();
-        }
+        Tournament t = requireStarted();
+        if (t.roundClosed) throw new TournamentExeptions("Kolo již bylo uzavřeno.");
+        if (!isRoundFinished()) throw new TournamentExeptions("Kolo nelze uzavřít, protože některé zápasy nemají výsledek.");
+        t.roundClosed = true;
+        t.tournamentFinished = t.currentRound == t.numberOfRounds;
+    }
 
-        if (activeTournament.currentRound == activeTournament.numberOfRounds)
-        {
-            throw new TournamentAllRoundsFinishedExeption();
-        }
+    public void NewRound()
+    {
+        Tournament t = requireStarted();
+        if (!t.roundClosed) throw new TournamentExeptions("Nejdříve uzavři aktuální kolo.");
+        if (t.currentRound >= t.numberOfRounds) throw new TournamentAllRoundsFinishedExeption();
+        t.currentRound++;
+        t.roundClosed = false;
+        createRound();
+    }
 
-        if (isRoundFinished())
+    // Dočasné párování každý s každým, než tým dodá vlastní losování.
+    private void createRound()
+    {
+        Tournament t = requireStarted();
+        List<Player?> order = new List<Player?>(t.tournamentPlayers);
+        if (order.Count % 2 != 0) order.Add(null);
+        // První hráč zůstává na místě, ostatní se v každém kole posunou.
+        for (int round = 1; round < t.currentRound; round++)
         {
-            activeTournament.currentRound++;
+            Player? last = order[order.Count - 1];
+            order.RemoveAt(order.Count - 1);
+            order.Insert(1, last);
         }
-        else
+        MatchManager manager = new MatchManager(t, playerManager);
+        for (int i = 0; i < order.Count / 2; i++)
         {
-            throw new TournamentRoundNotFinished();
+            Player? first = order[i];
+            Player? second = order[order.Count - 1 - i];
+            if (first == null)
+            {
+                first = second;
+                second = null;
+            }
+            manager.addMatch(new Match(first!, second, t.currentRound));
         }
+    }
+
+    public void endTournament()
+    {
+        Tournament t = requireStarted();
+        if (!t.tournamentFinished) throw new TournamentNotFinishedExeption();
+        activeTournament = null;
+    }
+
+    public void endNotFinishedTournament()
+    {
+        requireStarted();
+        activeTournament = null;
+    }
+
+    private Tournament requireTournament()
+    {
+        if (activeTournament == null) throw new TournamentNotExistingExeption();
+        return activeTournament;
+    }
+
+    private Tournament requireStarted()
+    {
+        Tournament t = requireTournament();
+        if (!t.tournamentStarted) throw new TournamentNotStartedExeption();
+        return t;
     }
 }

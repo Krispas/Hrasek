@@ -4,6 +4,11 @@
 
     public void newPlayer(string name, string nickname) //ui
     {
+        if (!Hrasek.InputValidator.Text(name, "Jméno hráče", out string error) ||
+            !Hrasek.InputValidator.Text(nickname, "Přezdívka", out error))
+            throw new PlayerExeptions(error);
+        name = name.Trim();
+        nickname = nickname.Trim();
         foreach (Player p in players)
         {
             if (p.nickname.ToLower() == nickname.ToLower())
@@ -25,6 +30,7 @@
             if (p.nickname.ToLower() == nickname.ToLower())
             {
                 players.Remove(p);
+                return;
             }
         }
     }
@@ -44,7 +50,11 @@
 
     public Player? getPlayer(string nickname)
     {
-        Player? player = players.Find(p => p.nickname == nickname);
-        return player;
+        foreach (Player player in players)
+        {
+            if (string.Equals(player.nickname, nickname?.Trim(), StringComparison.OrdinalIgnoreCase))
+                return player;
+        }
+        return null;
     }
 }
