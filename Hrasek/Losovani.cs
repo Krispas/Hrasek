@@ -1,3 +1,4 @@
+namespace Hrasek;
 public static class Losovani
 {
     public const string VolnyLos = "VOLNY_LOS";

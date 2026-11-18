@@ -1,3 +1,4 @@
+namespace Hrasek;
 public static class LosovaniOvereni
 {
     public static List<string> Over(int pocet)
